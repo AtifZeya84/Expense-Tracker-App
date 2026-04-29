@@ -5,7 +5,7 @@
              CSV export, dark/light theme, analytics
 ================================================================ */
 
-const API_URL = 'http://localhost:8080/api/expenses';
+const API_URL = 'https://expense-tracker-app-su6d.onrender.com/api/expenses';
 
 // ── State ──────────────────────────────────────────────────────
 let allExpenses    = [];

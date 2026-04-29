@@ -1,11 +1,11 @@
-# 💸 Expense Tracker — Full Stack Project
+# Expense Tracker — Full Stack Project
 
 A full-stack Expense Tracker built with **Spring Boot**, **PostgreSQL**, and vanilla **HTML/CSS/JS**.
 Perfect for your resume and live portfolio!
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 expense-tracker/
@@ -56,7 +56,7 @@ Your API is now running at: `http://localhost:8080/api/expenses`
 
 ---
 
-## 🌐 Frontend Setup
+## Frontend Setup
 
 No build step needed! Just open `frontend/index.html` in your browser.
 
@@ -91,7 +91,7 @@ For a better experience, use the Live Server extension in VS Code.
 
 ---
 
-## 🚀 Hosting Live (For Recruiters)
+## Hosting Live (For Recruiters)
 
 ### Backend — Deploy on Render (Free)
 1. Push your project to GitHub

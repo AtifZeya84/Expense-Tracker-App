@@ -1,11 +1,12 @@
-/* ================================================================
-   SpendLog — app.js
-   Backend: Spring Boot REST at http://localhost:8080/api/expenses
-   Features: CRUD, search, sort, filter, charts, budget, undo delete,
-             CSV export, dark/light theme, analytics
-================================================================ */
 
-const API_URL = 'https://expense-tracker-app-su6d.onrender.com/api/expenses';
+
+const BACKEND = 'https://expense-tracker-app-su6d.onrender.com';
+const API_URL = `${BACKEND}/api/expenses`;
+
+// Keep-alive ping — stops Render from sleeping
+setInterval(async () => {
+  try { await fetch(API_URL); } catch (e) {}
+}, 9 * 60 * 1000);
 
 // ── State ──────────────────────────────────────────────────────
 let allExpenses    = [];
@@ -97,6 +98,11 @@ function showView(name, triggerBtn) {
 
 // ── API Calls ──────────────────────────────────────────────────
 async function loadExpenses() {
+  document.getElementById('recent-list').innerHTML = `
+    <div style="text-align:center;padding:2rem;opacity:0.6">
+      <div class="spinner-border spinner-border-sm me-2"></div>
+      Connecting to server...
+    </div>`;
   try {
     const res = await fetch(API_URL);
     if (!res.ok) throw new Error('Server error');
@@ -106,7 +112,13 @@ async function loadExpenses() {
     buildDashboardCharts();
     buildBudgetView();
   } catch (e) {
-    showToast('⚠️ Could not connect to backend', false);
+    document.getElementById('recent-list').innerHTML = `
+      <div style="text-align:center;padding:2rem">
+        <p style="font-size:1.1rem">⏳ Server is waking up...</p>
+        <p style="font-size:.85rem;opacity:0.6">Takes ~50 sec on free hosting.<br>Wait then click Try Again.</p>
+        <button class="btn sl-btn-primary mt-3" onclick="loadExpenses()">🔄 Try Again</button>
+      </div>`;
+    showToast('⏳ Server waking up — wait 50 sec then retry', false);
   }
 }
 
